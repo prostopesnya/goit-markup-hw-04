@@ -125,7 +125,7 @@ transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 .current::after{
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     width: 100%;
     height: 4px;
@@ -341,6 +341,7 @@ margin-bottom: 8px;
     border-radius:50%;
     display: flex;
     align-items: center;justify-content: center;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
     .social-icon{
@@ -367,16 +368,13 @@ padding: 120px 0;
     gap: 24px;
     margin: 0 auto;
 }
-/*.customers-item{
-padding: 16px 32px;
-border-radius: 4px;
-border: 1px solid var(--lightslate, #8E8F99);
-width: 168px;
-height: 88px;
-}*/
+.customers-item{
+    width: calc((100% - 120px) / 6);
+    height: 88px;
+}
 
 .customer-icon{
-    fill: #8E8F99;
+    fill: currentColor;
 }
 
 .customers-link{
@@ -387,14 +385,17 @@ height: 88px;
     display: flex;
     align-items: center;justify-content: center;
     color: var(--basic-grey);
-    
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.customers-link:is(:hover, :focus){
+    border-color: #404bbf;
+    color: #404bbf;
+
 }
 
 .customers-link:is(:hover, :focus) .customer-icon{
 fill: var(--action-color);
-}
-.customers-item:is(:hover, :focus){
-    border: 1px solid var(--action-color);
 }
 
 /*!-----------------------FOOTER-----------------------!*/
@@ -409,6 +410,7 @@ fill: var(--action-color);
 .footer-container{
     display: flex;
     margin: 0 auto;
+    align-items: baseline;
 }
 
 .footer-logo-text{
@@ -448,9 +450,10 @@ max-width: 264px;
 }
 
 
-.social-media-container{
+/*.social-media-container{
     width:100%;
-}
+}*/
+
 .social-media-title{
     color: #FFF;
     font-family: Roboto;
@@ -463,15 +466,29 @@ margin-bottom: 16px;
 }
 
 .social-media-link{
-    height: 24px;
+    height: 100%;
+    width: 100%;
+    background-color: var(--accent-text-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;justify-content: center;
 }
 
+.social-media-link:hover,
+.social-media-link:focus{
+    background-color: #31d0aa;
+}
 .social-media-list{
     display: flex;
     gap: 16px;
 }
 .social-media-icon{
-    fill: #f4f4fd;
+    fill: var(--background-color);
+}
+.social-media-item{
+    width: 40px;
+    height: 40px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1); 
 }
 
 /*!-----------------------FILTER LIST-----------------------!*/
@@ -498,6 +515,7 @@ border: 1px solid var(--cornflower, #E7E9FC);
 background: var(--cloud, #F4F4FD);
 padding: 12px 24px 12px 24px;
 border-radius: 4px;
+transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 }
 
@@ -512,7 +530,8 @@ font-weight: 500;
 line-height: 1.5;
 letter-spacing: 0.04em;
 background: var(--ocean, #404BBF);
-border: 1px solid transparent
+border: 1px solid transparent;
+box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12); 
 }
 /*!-----------------------PORTFOLIO-----------------------!*/
 .portfolio{
@@ -530,6 +549,8 @@ border: 1px solid transparent
 
 .portfolio-list-item{
     width: calc((100% - 24px * 2) / 3);
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 .portfolio-cover-container{
@@ -559,8 +580,18 @@ transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 .portfolio-link{
     box-shadow: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
 }
+
+.portfolio-link:hover,
+.portfolio-link:focus{
+    box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+} 
 .portfolio-link:hover .portfolio-cover-text{
+    transform: translateY(0);
+}
+
+.portfolio-link:focus .portfolio-cover-text{
     transform: translateY(0);
 }
 .portfolio-title{
@@ -632,14 +663,13 @@ letter-spacing: 0.02em;
 .modal-close-btn:is(:hover, :focus){
     background-color: #404bbf;
     border: none;
+    fill: #ffffff;
 }
 .close-button-icon{
     width: 8px;height: 8px;
     transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.close-button-icon:is(:hover, :focus){
-    fill: #ffffff;
-}
+
 .is-hidden{
     opacity: 0;
     visibility: hidden;
